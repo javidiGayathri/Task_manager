@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A clean, pastel-themed daily Task Manager application for managing tasks efficiently with priorities, categories, and progress tracking.">
+    <title>BloomTask | Daily Task Manager</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Application Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <div>
+                    <h1 class="brand-title">BloomTask</h1>
+                    <p class="brand-subtitle">Organize your daily tasks gracefully</p>
+                </div>
+            </div>
+            <div class="header-date" id="current-date-display">
+                <!-- Dynamically populated date -->
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="app-main">
+            <!-- Progress Overview Card -->
+            <section class="stats-card">
+                <div class="stats-info">
+                    <div class="stats-text">
+                        <h2>Task Dashboard</h2>
+                        <p id="completion-status-text">0 of 0 tasks completed</p>
+                    </div>
+                    <div class="progress-ring-container">
+                        <div class="stats-badge" id="completion-percentage">0%</div>
+                    </div>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                </div>
+                <div class="stats-counters">
+                    <div class="counter-box counter-total">
+                        <span class="counter-label">Total</span>
+                        <span class="counter-value" id="count-total">0</span>
+                    </div>
+                    <div class="counter-box counter-pending">
+                        <span class="counter-label">Pending</span>
+                        <span class="counter-value" id="count-pending">0</span>
+                    </div>
+                    <div class="counter-box counter-completed">
+                        <span class="counter-label">Completed</span>
+                        <span class="counter-value" id="count-completed">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task Input Form -->
+            <section class="card form-card">
+                <h3 class="card-title">
+                    <i class="fa-solid fa-plus-circle"></i> Add New Task
+                </h3>
+                <form id="task-form" class="task-form">
+                    <div class="form-group main-input-group">
+                        <input 
+                            type="text" 
+                            id="task-title-input" 
+                            class="form-input" 
+                            placeholder="What do you need to accomplish today?" 
+                            required
+                            maxlength="120"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-category-select" class="form-label">Category</label>
+                            <select id="task-category-select" class="form-select">
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="Study">Study</option>
+                                <option value="Health">Health</option>
+                                <option value="Finance">Finance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-priority-select" class="form-label">Priority</label>
+                            <select id="task-priority-select" class="form-select">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-due-date" class="form-label">Due Date</label>
+                            <input type="date" id="task-due-date" class="form-input">
+                        </div>
+                    </div>
+                    <button type="submit" id="add-task-btn" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Add Task
+                    </button>
+                </form>
+            </section>
+
+            <!-- Tasks List & Controls Section -->
+            <section class="card tasks-section">
+                <!-- Filters & Search Toolbar -->
+                <div class="toolbar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            class="search-input" 
+                            placeholder="Search tasks..." 
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="filter-tabs" id="status-filter-tabs">
+                        <button type="button" class="tab-btn active" data-filter="all">All</button>
+                        <button type="button" class="tab-btn" data-filter="pending">Pending</button>
+                        <button type="button" class="tab-btn" data-filter="completed">Completed</button>
+                    </div>
+
+                    <div class="category-filter-wrapper">
+                        <select id="category-filter-select" class="form-select filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="Study">Study</option>
+                            <option value="Health">Health</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Active Tasks List -->
+                <ul id="task-list" class="task-list">
+                    <!-- Dynamic task items populated by script.js -->
+                </ul>
+
+                <!-- Empty State Display -->
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+                    <h4 class="empty-title" id="empty-state-title">No tasks found</h4>
+                    <p class="empty-subtitle" id="empty-state-subtitle">Add a task above to get started with your day!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>BloomTask &copy; 2026 • Crafted with care for daily productivity</p>
+        </footer>
+    </div>
+
+    <!-- External JavaScript script file -->
+    <script src="script.js" defer></script>
+</body>
+</html>

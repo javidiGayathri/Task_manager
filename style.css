@@ -1,0 +1,700 @@
+/* ==========================================================================
+   BloomTask - Pastel Task Manager Stylesheet
+   Theme: Soft Pastel, Clean Light Mode, Glassmorphic Touch & Modern Typography
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System & CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+    /* Color Palette - Pastels & Soft Neutrals */
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(226, 232, 240, 0.8);
+    
+    /* Text Colors */
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --text-light: #a0aec0;
+    
+    /* Brand Accent - Soft Lavender & Purple */
+    --primary-color: #8b5cf6;
+    --primary-hover: #7c3aed;
+    --primary-light: #ede9fe;
+    --primary-border: #ddd6fe;
+
+    /* Category Pastel Badges */
+    --cat-personal-bg: #ffe4e6;
+    --cat-personal-text: #9f1239;
+    --cat-work-bg: #e0f2fe;
+    --cat-work-text: #075985;
+    --cat-study-bg: #fef3c7;
+    --cat-study-text: #92400e;
+    --cat-health-bg: #d1fae5;
+    --cat-health-text: #065f46;
+    --cat-finance-bg: #f3e8ff;
+    --cat-finance-text: #6b21a8;
+
+    /* Priority Colors (Soft) */
+    --priority-low-bg: #e0f2fe;
+    --priority-low-text: #0369a1;
+    --priority-med-bg: #fef3c7;
+    --priority-med-text: #b45309;
+    --priority-high-bg: #ffe4e6;
+    --priority-high-text: #be123c;
+
+    /* Status Colors */
+    --success-bg: #d1fae5;
+    --success-text: #047857;
+    --danger-bg: #fee2e2;
+    --danger-text: #b91c1c;
+    --danger-hover: #fca5a5;
+
+    /* Shadows & Radii */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 2px 8px rgba(148, 163, 184, 0.08);
+    --shadow-md: 0 8px 24px rgba(148, 163, 184, 0.12);
+    --shadow-lg: 0 16px 32px rgba(148, 163, 184, 0.16);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Layout
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header Styling
+   -------------------------------------------------------------------------- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.brand-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.header-date {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: var(--primary-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-border);
+}
+
+/* --------------------------------------------------------------------------
+   4. Cards & General Components
+   -------------------------------------------------------------------------- */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--card-border);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-title i {
+    color: var(--primary-color);
+}
+
+/* --------------------------------------------------------------------------
+   5. Task Dashboard / Stats Card
+   -------------------------------------------------------------------------- */
+.stats-card {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border: 1px solid #c7d2fe;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.stats-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-text h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3730a3;
+}
+
+.stats-text p {
+    font-size: 14px;
+    color: #4338ca;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.stats-badge {
+    background: #ffffff;
+    color: #4338ca;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #818cf8 0%, #6366f1 100%);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.stats-counters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.counter-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.counter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.counter-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Task Form Styling
+   -------------------------------------------------------------------------- */
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-main);
+    background-color: #ffffff;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+
+.form-input:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   7. Toolbar (Search, Filter Tabs, Category Dropdown)
+   -------------------------------------------------------------------------- */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 14px 10px 38px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.filter-tabs {
+    display: flex;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    gap: 4px;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.tab-btn.active {
+    background: #ffffff;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-select {
+    padding: 8px 12px;
+    font-size: 13px;
+    width: auto;
+    border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   8. Task List & Items Styling
+   -------------------------------------------------------------------------- */
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 1.5px solid #f1f5f9;
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    gap: 14px;
+    transition: all var(--transition-normal);
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.task-item:hover {
+    border-color: var(--primary-border);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.task-item-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+/* Task Content */
+.task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.task-title-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    word-break: break-word;
+    transition: color var(--transition-fast);
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Category Badge Dynamic Classes */
+.badge-cat-Personal { background: var(--cat-personal-bg); color: var(--cat-personal-text); }
+.badge-cat-Work { background: var(--cat-work-bg); color: var(--cat-work-text); }
+.badge-cat-Study { background: var(--cat-study-bg); color: var(--cat-study-text); }
+.badge-cat-Health { background: var(--cat-health-bg); color: var(--cat-health-text); }
+.badge-cat-Finance { background: var(--cat-finance-bg); color: var(--cat-finance-text); }
+
+/* Priority Badge Dynamic Classes */
+.badge-priority-Low { background: var(--priority-low-bg); color: var(--priority-low-text); }
+.badge-priority-Medium { background: var(--priority-med-bg); color: var(--priority-med-text); }
+.badge-priority-High { background: var(--priority-high-bg); color: var(--priority-high-text); }
+
+.badge-date {
+    background: #f1f5f9;
+    color: var(--text-muted);
+}
+
+/* Completed Task State */
+.task-item.completed {
+    background: #fafafa;
+    border-color: #f1f5f9;
+    opacity: 0.75;
+}
+
+.task-item.completed .task-title-text {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+/* Actions / Delete Button */
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.delete-btn:hover {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+/* --------------------------------------------------------------------------
+   9. Empty State Display
+   -------------------------------------------------------------------------- */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 40px;
+    color: #c7d2fe;
+    margin-bottom: 12px;
+}
+
+.empty-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.empty-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer
+   -------------------------------------------------------------------------- */
+.app-footer {
+    text-align: center;
+    padding: 16px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   11. Animations
+   -------------------------------------------------------------------------- */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-item.removing {
+    opacity: 0;
+    transform: scale(0.95);
+    max-height: 0;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Layout Rules
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-tabs {
+        justify-content: center;
+    }
+
+    .header-brand {
+        gap: 10px;
+    }
+
+    .brand-title {
+        font-size: 22px;
+    }
+
+    .header-date {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+}
