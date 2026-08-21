@@ -1,29 +1,22 @@
-/* ==========================================================================
-   BloomTask - Pastel Task Manager Stylesheet
-   Theme: Soft Pastel, Clean Light Mode, Glassmorphic Touch & Modern Typography
-   ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Design System & CSS Variables
-   -------------------------------------------------------------------------- */
 :root {
     /* Color Palette - Pastels & Soft Neutrals */
     --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
     --card-bg: rgba(255, 255, 255, 0.95);
     --card-border: rgba(226, 232, 240, 0.8);
     
-    /* Text Colors */
+  
     --text-main: #2d3748;
     --text-muted: #718096;
     --text-light: #a0aec0;
     
-    /* Brand Accent - Soft Lavender & Purple */
+  
     --primary-color: #8b5cf6;
     --primary-hover: #7c3aed;
     --primary-light: #ede9fe;
     --primary-border: #ddd6fe;
 
-    /* Category Pastel Badges */
+    
     --cat-personal-bg: #ffe4e6;
     --cat-personal-text: #9f1239;
     --cat-work-bg: #e0f2fe;
@@ -35,7 +28,7 @@
     --cat-finance-bg: #f3e8ff;
     --cat-finance-text: #6b21a8;
 
-    /* Priority Colors (Soft) */
+   
     --priority-low-bg: #e0f2fe;
     --priority-low-text: #0369a1;
     --priority-med-bg: #fef3c7;
@@ -43,14 +36,13 @@
     --priority-high-bg: #ffe4e6;
     --priority-high-text: #be123c;
 
-    /* Status Colors */
     --success-bg: #d1fae5;
     --success-text: #047857;
     --danger-bg: #fee2e2;
     --danger-text: #b91c1c;
     --danger-hover: #fca5a5;
 
-    /* Shadows & Radii */
+    
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
@@ -58,14 +50,12 @@
     --shadow-md: 0 8px 24px rgba(148, 163, 184, 0.12);
     --shadow-lg: 0 16px 32px rgba(148, 163, 184, 0.16);
 
-    /* Transitions */
+   
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
 }
 
-/* --------------------------------------------------------------------------
-   2. Reset & Base Layout
-   -------------------------------------------------------------------------- */
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -93,9 +83,7 @@ body {
     gap: 24px;
 }
 
-/* --------------------------------------------------------------------------
-   3. Header Styling
-   -------------------------------------------------------------------------- */
+
 .app-header {
     display: flex;
     justify-content: space-between;
@@ -145,9 +133,7 @@ body {
     border: 1px solid var(--primary-border);
 }
 
-/* --------------------------------------------------------------------------
-   4. Cards & General Components
-   -------------------------------------------------------------------------- */
+
 .card {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -171,9 +157,6 @@ body {
     color: var(--primary-color);
 }
 
-/* --------------------------------------------------------------------------
-   5. Task Dashboard / Stats Card
-   -------------------------------------------------------------------------- */
 .stats-card {
     background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
     border: 1px solid #c7d2fe;
@@ -262,9 +245,7 @@ body {
     margin-top: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   6. Task Form Styling
-   -------------------------------------------------------------------------- */
+
 .task-form {
     display: flex;
     flex-direction: column;
@@ -339,9 +320,7 @@ body {
     transform: translateY(0);
 }
 
-/* --------------------------------------------------------------------------
-   7. Toolbar (Search, Filter Tabs, Category Dropdown)
-   -------------------------------------------------------------------------- */
+
 .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -418,9 +397,6 @@ body {
     border-radius: var(--radius-md);
 }
 
-/* --------------------------------------------------------------------------
-   8. Task List & Items Styling
-   -------------------------------------------------------------------------- */
 .task-list {
     list-style: none;
     display: flex;
@@ -455,7 +431,7 @@ body {
     min-width: 0;
 }
 
-/* Custom Checkbox */
+
 .checkbox-container {
     position: relative;
     width: 22px;
@@ -510,7 +486,7 @@ body {
     display: block;
 }
 
-/* Task Content */
+
 .task-details {
     display: flex;
     flex-direction: column;
@@ -534,7 +510,7 @@ body {
     gap: 8px;
 }
 
-/* Badges */
+
 .badge {
     display: inline-flex;
     align-items: center;
@@ -545,14 +521,13 @@ body {
     font-weight: 600;
 }
 
-/* Category Badge Dynamic Classes */
+
 .badge-cat-Personal { background: var(--cat-personal-bg); color: var(--cat-personal-text); }
 .badge-cat-Work { background: var(--cat-work-bg); color: var(--cat-work-text); }
 .badge-cat-Study { background: var(--cat-study-bg); color: var(--cat-study-text); }
 .badge-cat-Health { background: var(--cat-health-bg); color: var(--cat-health-text); }
 .badge-cat-Finance { background: var(--cat-finance-bg); color: var(--cat-finance-text); }
 
-/* Priority Badge Dynamic Classes */
 .badge-priority-Low { background: var(--priority-low-bg); color: var(--priority-low-text); }
 .badge-priority-Medium { background: var(--priority-med-bg); color: var(--priority-med-text); }
 .badge-priority-High { background: var(--priority-high-bg); color: var(--priority-high-text); }
@@ -562,7 +537,7 @@ body {
     color: var(--text-muted);
 }
 
-/* Completed Task State */
+
 .task-item.completed {
     background: #fafafa;
     border-color: #f1f5f9;
@@ -574,7 +549,7 @@ body {
     color: var(--text-light);
 }
 
-/* Actions / Delete Button */
+
 .delete-btn {
     background: transparent;
     border: none;
@@ -594,9 +569,7 @@ body {
     color: var(--danger-text);
 }
 
-/* --------------------------------------------------------------------------
-   9. Empty State Display
-   -------------------------------------------------------------------------- */
+
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -628,9 +601,7 @@ body {
     margin-top: 4px;
 }
 
-/* --------------------------------------------------------------------------
-   10. Footer
-   -------------------------------------------------------------------------- */
+
 .app-footer {
     text-align: center;
     padding: 16px 0;
@@ -638,9 +609,7 @@ body {
     color: var(--text-muted);
 }
 
-/* --------------------------------------------------------------------------
-   11. Animations
-   -------------------------------------------------------------------------- */
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -664,9 +633,7 @@ body {
     transition: all 0.3s ease-out;
 }
 
-/* --------------------------------------------------------------------------
-   12. Responsive Layout Rules
-   -------------------------------------------------------------------------- */
+
 @media (max-width: 640px) {
     body {
         padding: 16px 10px;
