@@ -1,20 +1,12 @@
-/**
- * BloomTask - Daily Task Manager
- * Pure JavaScript Implementation for Dynamic DOM Manipulation & Task Management
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ----------------------------------------------------------------------
-    // 1. Application State & Storage Keys
-    // ----------------------------------------------------------------------
     const STORAGE_KEY = 'bloom_tasks_data_v1';
     
     let tasks = loadTasksFromStorage();
     let currentFilter = 'all'; // 'all', 'pending', 'completed'
     let currentCategory = 'all';
     let searchQuery = '';
-
-    // If initial application load is completely empty, populate friendly starter tasks
     if (tasks.length === 0) {
         tasks = [
             {
@@ -38,13 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         saveTasksToStorage();
     }
-
-    // ----------------------------------------------------------------------
-    // 2. DOM Element Selectors
-    // ----------------------------------------------------------------------
     const currentDateDisplay = document.getElementById('current-date-display');
-    
-    // Stats elements
     const completionStatusText = document.getElementById('completion-status-text');
     const completionPercentage = document.getElementById('completion-percentage');
     const progressBarFill = document.getElementById('progress-bar-fill');
@@ -52,27 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const countPending = document.getElementById('count-pending');
     const countCompleted = document.getElementById('count-completed');
 
-    // Form elements
+   
     const taskForm = document.getElementById('task-form');
     const taskTitleInput = document.getElementById('task-title-input');
     const taskCategorySelect = document.getElementById('task-category-select');
     const taskPrioritySelect = document.getElementById('task-priority-select');
     const taskDueDateInput = document.getElementById('task-due-date');
 
-    // Filter Toolbar elements
+    
     const searchInput = document.getElementById('search-input');
     const statusFilterTabs = document.getElementById('status-filter-tabs');
     const categoryFilterSelect = document.getElementById('category-filter-select');
 
-    // Task List & Empty State
+   
     const taskList = document.getElementById('task-list');
     const emptyState = document.getElementById('empty-state');
     const emptyStateTitle = document.getElementById('empty-state-title');
     const emptyStateSubtitle = document.getElementById('empty-state-subtitle');
 
-    // ----------------------------------------------------------------------
-    // 3. Initialization
-    // ----------------------------------------------------------------------
+   
     initApp();
 
     function initApp() {
@@ -82,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     }
 
-    // ----------------------------------------------------------------------
-    // 4. Date Helpers
-    // ----------------------------------------------------------------------
+   
     function displayTodayDate() {
         const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
         const today = new Date().toLocaleDateString('en-US', options);
@@ -115,9 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    // ----------------------------------------------------------------------
-    // 5. Local Storage Operations
-    // ----------------------------------------------------------------------
     function saveTasksToStorage() {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
@@ -136,23 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ----------------------------------------------------------------------
-    // 6. Event Listeners Setup
-    // ----------------------------------------------------------------------
     function attachEventListeners() {
-        // Form Submission - Add Task
+       
         taskForm.addEventListener('submit', handleAddTask);
-
-        // Task List Event Delegation (Checkbox Toggle & Delete Button)
         taskList.addEventListener('click', handleTaskListClick);
         taskList.addEventListener('change', handleTaskListChange);
-
-        // Status Filter Tabs
         statusFilterTabs.addEventListener('click', (e) => {
             const targetBtn = e.target.closest('.tab-btn');
             if (!targetBtn) return;
-
-            // Update active styling
             const tabButtons = statusFilterTabs.querySelectorAll('.tab-btn');
             tabButtons.forEach(btn => btn.classList.remove('active'));
             targetBtn.classList.add('active');
@@ -160,23 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
             currentFilter = targetBtn.dataset.filter;
             render();
         });
-
-        // Category Filter Dropdown
         categoryFilterSelect.addEventListener('change', (e) => {
             currentCategory = e.target.value;
             render();
         });
-
-        // Realtime Search Input
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.trim().toLowerCase();
             render();
         });
     }
-
-    // ----------------------------------------------------------------------
-    // 7. Task Management Actions (Add, Toggle, Delete)
-    // ----------------------------------------------------------------------
     function handleAddTask(e) {
         e.preventDefault();
 
@@ -193,10 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
             createdAt: Date.now()
         };
 
-        tasks.unshift(newTask); // Add to beginning of array
+        tasks.unshift(newTask); 
         saveTasksToStorage();
 
-        // Reset title input
+      
         taskTitleInput.value = '';
         setDefaultDueDate();
         taskTitleInput.focus();
@@ -205,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleTaskListChange(e) {
-        // Handle Checkbox Toggle
+        
         if (e.target.matches('.task-checkbox')) {
             const taskId = e.target.dataset.id;
             const task = tasks.find(t => t.id === taskId);
@@ -218,17 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleTaskListClick(e) {
-        // Handle Delete Button Click
+       
         const deleteBtn = e.target.closest('.delete-btn');
         if (deleteBtn) {
             const taskId = deleteBtn.dataset.id;
             const taskItem = deleteBtn.closest('.task-item');
 
             if (taskItem) {
-                // Add smooth removal animation class
+               
                 taskItem.classList.add('removing');
 
-                // Wait for animation to finish before removing from array
                 setTimeout(() => {
                     tasks = tasks.filter(t => t.id !== taskId);
                     saveTasksToStorage();
@@ -238,28 +199,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ----------------------------------------------------------------------
-    // 8. Filtering & Data Processing
-    // ----------------------------------------------------------------------
+  
     function getFilteredTasks() {
         return tasks.filter(task => {
-            // Status filter
+            
             if (currentFilter === 'pending' && task.completed) return false;
             if (currentFilter === 'completed' && !task.completed) return false;
 
-            // Category filter
+            
             if (currentCategory !== 'all' && task.category !== currentCategory) return false;
 
-            // Search query filter
+            
             if (searchQuery && !task.title.toLowerCase().includes(searchQuery)) return false;
 
             return true;
         });
     }
 
-    // ----------------------------------------------------------------------
-    // 9. Rendering DOM Updates
-    // ----------------------------------------------------------------------
+   
     function render() {
         renderStats();
         renderTaskList();
@@ -283,13 +240,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderTaskList() {
         const filteredTasks = getFilteredTasks();
 
-        // Clear existing list items
+       
         taskList.innerHTML = '';
 
         if (filteredTasks.length === 0) {
             emptyState.classList.remove('hidden');
 
-            // Dynamic Empty State Messages
+
             if (tasks.length === 0) {
                 emptyStateTitle.textContent = 'No tasks yet';
                 emptyStateSubtitle.textContent = 'Add your first task above to kickstart your day!';
@@ -362,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return li;
     }
 
-    // Helper to sanitize HTML strings
+    
     function escapeHtml(str) {
         if (!str) return '';
         return str
